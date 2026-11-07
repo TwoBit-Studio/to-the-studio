@@ -66,26 +66,28 @@ export default function TeamCard({ member, linkedinLabel, className = "" }: Team
           style={box(head)}
         />
 
+        {/* Text sizes don't scale with the card in Figma: each frame sets its own,
+            and the block sits a bit higher on smaller cards. */}
         <div
-          className="absolute flex flex-col items-center text-center text-white"
-          style={{ ...box(text), gap: u(15) }}
+          className="absolute top-[45.3%] flex -translate-x-1/2 flex-col items-center whitespace-nowrap text-center text-white md:top-[51.4%] xl:top-(--text-top)"
+          style={
+            {
+              left: u(text.left + text.width / 2),
+              "--text-top": `${(text.top / frame.height) * 100}%`,
+            } as React.CSSProperties
+          }
         >
-          <div>
-            <h3 className="whitespace-nowrap font-semibold" style={{ fontSize: u(25), lineHeight: 1.4 }}>
-              {member.name}
-            </h3>
-            <p style={{ fontSize: u(12) }}>{member.role}</p>
-          </div>
+          <h3 className="-mb-5 text-[15px] leading-[43.2px] font-semibold md:-mb-[15px] md:text-[18px] xl:-mb-[11px] xl:text-[25px]">
+            {member.name}
+          </h3>
+          <p className="text-[8px] leading-[31px] md:text-[10px] xl:text-[12px]">{member.role}</p>
           <Button
             href={member.linkedin}
-            variant="dark"
-            size="sm"
+            variant="linkedin"
             external
-            className="h-auto! px-0!"
+            className="mt-[3px] h-[23px] w-[73px] text-[7px] md:mt-[5px] md:h-[27px] md:w-[81px] md:text-[8px] xl:mt-[21px] xl:h-[30px] xl:w-[114px] xl:text-[12px]"
           >
-            <span style={{ fontSize: u(12), width: u(114), lineHeight: u(30) }}>
-              {linkedinLabel} ↗
-            </span>
+            {linkedinLabel}
           </Button>
         </div>
       </div>

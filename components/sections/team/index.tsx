@@ -5,26 +5,26 @@ import TeamCard from "./team-card";
 
 export default function Team({ dict }: { dict: Dictionary["team"] }) {
   return (
-    <section className="pt-16 md:pt-24 xl:pt-[143px]">
+    <section className="pt-[103px] md:pt-[111px] xl:pt-[143px]">
       <Container>
-        <div className="mx-auto flex max-w-[1082px] flex-col gap-5 text-center xl:gap-7">
+        <div className="mx-auto flex flex-col gap-7 text-center md:max-w-[597px] xl:max-w-[1082px]">
           <h2 className="type-h1">{dict.title}</h2>
-          <p className="type-lead">{dict.description}</p>
+          <p className="type-lead max-md:leading-[43.2px]">{dict.description}</p>
         </div>
 
-        {/* Mobile: cards staggered left/right like the design; desktop: side by side */}
-        <div className="mt-12 flex flex-col gap-4 md:mt-[50px] md:flex-row md:items-center md:justify-center md:gap-10 xl:gap-[92px]">
+        {/* Mobile: cards staggered left/right and overlapping like the design; tablet/desktop: side by side */}
+        <div className="flex flex-col md:mt-[23px] md:-mx-6 md:flex-row md:items-center md:justify-center md:gap-[25px] xl:mx-0 xl:mt-[50px] xl:gap-[92px]">
           {team.map((member, i) => (
             <TeamCard
               key={member.name}
               member={member}
               linkedinLabel={dict.linkedin}
-              className={`max-md:w-[75%]! ${i % 2 ? "max-md:self-end" : ""}`}
+              className={`max-md:w-[73%]! ${i % 2 ? "max-md:-mt-6 max-md:self-end" : ""}`}
             />
           ))}
         </div>
 
-        <hr className="mt-16 border-ink md:mt-40 xl:mt-[300px]" />
+        <hr className="mt-[89px] border-ink md:mt-[176px] xl:mt-[300px]" />
       </Container>
     </section>
   );
