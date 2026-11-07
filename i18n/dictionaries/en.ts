@@ -116,7 +116,6 @@ const en = {
   },
   footer: {
     email: "contact@2thestudio.com",
-    copyright: "©2026 2theStüdio",
   },
 };
 

@@ -121,7 +121,6 @@ const es: Dictionary = {
   },
   footer: {
     email: "contact@2thestudio.com",
-    copyright: "©2026 2theStüdio",
   },
 };
 
