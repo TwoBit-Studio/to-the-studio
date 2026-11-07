@@ -1,7 +1,8 @@
 'use client';
 
 // StickerPeel from React Bits (TS + Tailwind variant): https://reactbits.dev
-// Vendored as-is so it can be updated from the registry; adjust through props.
+// Vendored from the registry; adjust through props. Local changes (marked inline): the
+// settings ref syncs in an effect, and textures always use the full resolution budget.
 
 import { useEffect, useRef, type CSSProperties, type HTMLAttributes } from 'react';
 
@@ -597,7 +598,9 @@ const StickerPeel = ({
         if (!alive || loadedSrc !== src || !scratchContext) return;
         const iw = image.naturalWidth || 1;
         const ih = image.naturalHeight || 1;
-        const fit = Math.min(1, MAX_TEXTURE / (Math.max(iw, ih) * (1 + 2 * PAD)));
+        // Always fill the texture budget (upstream caps at 1×): SVGs report a small natural
+        // size but rasterize sharply at any scale, so they stay crisp on high-DPI screens.
+        const fit = MAX_TEXTURE / (Math.max(iw, ih) * (1 + 2 * PAD));
         const w = Math.max(1, Math.round(iw * fit));
         const h = Math.max(1, Math.round(ih * fit));
         const padX = Math.round(w * PAD);

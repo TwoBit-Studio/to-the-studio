@@ -1,8 +1,8 @@
-import Image from "next/image";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { sectionIds } from "@/lib/links";
 import Button from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import MascotSticker from "./mascot-sticker";
 
 export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
   return (
@@ -20,15 +20,8 @@ export default function Hero({ dict }: { dict: Dictionary["hero"] }) {
         </Button>
       </Container>
 
-      {/* The "Ü" mascot, tilted, bottom right. Not shown in the mobile design. */}
-      <Image
-        src="/images/mascot.svg"
-        alt=""
-        width={234}
-        height={377}
-        loading="eager"
-        className="absolute right-20 bottom-[27px] hidden w-[234px] -rotate-[18.51deg] md:block xl:right-[11.26%]"
-      />
+      {/* The "Ü" mascot, tilted, bottom right */}
+      <MascotSticker />
     </section>
   );
 }
